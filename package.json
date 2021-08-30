@@ -8,7 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
+    "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.3.2",
     "date-fns": "^2.11.1",

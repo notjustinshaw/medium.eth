@@ -1,13 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import Navbar from "../navbar";
 
 const name = "Justin Shaw";
 export const siteTitle = "Justin Shaw";
 
 export default function Layout({ children, home = false }) {
   return (
-    <div>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -23,29 +22,12 @@ export default function Layout({ children, home = false }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Lora&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700;400&family=Lora&display=swap"
           rel="stylesheet"
         />
       </Head>
-      <header>
-        {home && (
-          <div className="my-12 max-w-prose mx-auto">
-            <div className="flex-row flex justify-center">
-              <Image
-                priority
-                src="/images/profile.jpeg"
-                className="rounded-full"
-                height={144}
-                width={144}
-                alt={name}
-              />
-            </div>
-            <h1 className="mb-4 text-center text-5xl font-heading">{name}</h1>
-            <p className="text-center text-gray-500 font-light">21 • CS TA @ UW • he/him</p>
-          </div>
-        )}
-      </header>
+      <Navbar />
       <main>{children}</main>
-    </div>
+    </>
   );
 }

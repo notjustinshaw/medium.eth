@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout, { siteTitle } from "../components/layouts/homeLayout";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
-import Date from "../components/date";
+import Date from "../components/date/date";
 
 export default function Home({ allPostsData }) {
   return (
@@ -11,9 +11,9 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <div className="max-w-prose mx-auto">
-        <section className="mx-4">
-          <h2 className="mb-4 text-2xl leading-6 font-medium text-gray-900">
-            Blog
+        <section className="mx-4 mb-12">
+          <h2 className="mb-4 text-2xl leading-6 font-heading text-gray-900">
+            For You
           </h2>
           <div className="bg-white border border-gray-300 overflow-hidden rounded-md">
             <ul role="list" className="divide-y divide-gray-300">

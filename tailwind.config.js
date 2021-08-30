@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       fontFamily: {
         heading: ['Crimson Text', ...defaultTheme.fontFamily.serif],
-        body: ['Lora', ...defaultTheme.fontFamily.serif],
+        body: ['Lora', ...defaultTheme.fontFamily.sans],
       }
     },
   },

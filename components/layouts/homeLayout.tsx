@@ -21,10 +21,7 @@ export default function Layout({ children, home = false }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700;400&family=Lora&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;500;700&display=swap" rel="stylesheet"/>
       </Head>
       <Navbar />
       <main>{children}</main>

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/layouts/homeLayout";
-import { getSortedPostsData } from "../lib/posts";
+import { getSortedPostsData } from "../lib/posts/posts";
 import Link from "next/link";
 import { v4 as uuid } from "uuid";
 import Date from "../components/date/date";

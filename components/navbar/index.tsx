@@ -12,8 +12,6 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const { activateBrowserWallet, account } = useEthers();
-  const title = "Nonce";
-
   return (
     <Disclosure as="nav" className="bg-white shadow-sm mb-12">
       {({ open }) => (
@@ -24,26 +22,39 @@ export default function Navbar() {
                 <div className="flex-shrink-0 flex items-center">
                   <Link href="/">
                     <h1 className="cursor-pointer font-heading font-bold text-2xl tracking-tighter">
-                      {title}
+                      Nonce
                     </h1>
                   </Link>
                 </div>
               </div>
               <div className="flex items-center lg:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
+                {account ? (
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                ) : (
+                  <div>
+                    <Disclosure.Button className="bg-white rounded-md flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                      <div
+                        onClick={() => activateBrowserWallet()}
+                        className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
+                      >
+                        Connect a Wallet
+                      </div>
+                    </Disclosure.Button>
+                  </div>
+                )}
               </div>
               <div className="hidden lg:ml-4 lg:flex lg:items-center">
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-4 relative flex-shrink-0">
-                  {account && (
+                  {account ? (
                     <>
                       <div className="flex flex-row gap-8">
                         <button
@@ -100,8 +111,7 @@ export default function Navbar() {
                         </Menu.Items>
                       </Transition>
                     </>
-                  )}
-                  {!account && (
+                  ) : (
                     <div>
                       <Menu.Button className="bg-white rounded-md flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
                         <div

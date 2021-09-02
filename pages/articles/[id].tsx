@@ -5,6 +5,7 @@ import { getArticleById, getArticlePaths } from "../../lib/articles";
 
 export async function getStaticPaths() {
   const paths = await getArticlePaths();
+  console.log(paths);
   return {
     paths: paths.map((path) => ({ params: { id: path } })),
     fallback: false,

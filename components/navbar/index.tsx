@@ -13,7 +13,7 @@ function classNames(...classes) {
 export default function Navbar() {
   const { activateBrowserWallet, account } = useEthers();
   return (
-    <Disclosure as="nav" className="bg-white shadow-sm mb-12">
+    <Disclosure as="nav" className="bg-white shadow-sm">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -43,7 +43,7 @@ export default function Navbar() {
                     <Disclosure.Button className="bg-white rounded-md flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
                       <div
                         onClick={() => activateBrowserWallet()}
-                        className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
+                        className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
                       >
                         Connect a Wallet
                       </div>

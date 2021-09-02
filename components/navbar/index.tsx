@@ -5,12 +5,14 @@ import { PlusIcon } from "@heroicons/react/solid";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useEthers } from "@usedapp/core";
 import Avatar from "../avatar";
+import { useRouter } from "next/dist/client/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const { activateBrowserWallet, account } = useEthers();
   return (
     <Disclosure as="nav" className="bg-white shadow-sm">
@@ -59,6 +61,7 @@ export default function Navbar() {
                       <div className="flex flex-row gap-8">
                         <button
                           type="button"
+                          onClick={() => router.push("/new")}
                           className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
                         >
                           <PlusIcon

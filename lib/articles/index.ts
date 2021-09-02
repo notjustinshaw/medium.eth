@@ -1,41 +1,57 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
+import supabase from '../supabase/SupabaseClient'
 
-const postsDirectory = path.join(process.cwd(), 'posts')
-
-export function getSortedArticles() {
-  // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData: any[] = fileNames.map(fileName => {
-    const id = fileName.replace(/\.md$/, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const matterResult = matter(fileContents)
-    return {
-      id,
-      ...matterResult.data
-    }
-  })
-  // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
+export async function getFrontPageArticles() {
+  const articleIds = await supabase
+    .storage
+    .from('articles')
+    .list('public', {
+      limit: 5,
+      offset: 0,
+      sortBy: { column: 'last_accessed_at', order: 'desc' },
+    })
+    .then(({data, error}) => {
+      if (error) return []
+      return data.map((article: any) => article.name.replace(/\.md$/, '') as string)
+    })
+  const getArticle = async (id: string) => {
+    return await supabase
+    .storage
+    .from('articles')
+    .download(`public/${id}.md`)
+    .then(async ({data, error}) => {
+      if (error) return ''
+      const fileContents = await data.text()
+      const matterResult = matter(fileContents)
+      return { id, ...matterResult.data }
+    })
+  }
+  const articles = await Promise.all(articleIds.map(getArticle))
+  return articles
+}
+    
+export async function getArticlePaths(): Promise<string[]> {
+  return supabase
+    .storage
+    .from('articles')
+    .list('public')
+    .then(({data, error}) => {
+      if (error) return []
+      return data.map((article: any) => article.name.replace(/\.md$/, ''))
+    })
 }
 
-export function getArticles() {
-  
-}
-
-export async function getArticleById(articleId) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+export async function getArticleById(id: string) {
+  const fileContents = await supabase
+    .storage
+    .from('articles')
+    .download(`public/${id}.md`)
+    .then(async ({data, error}) => {
+      if (error) return ''
+      return await data.text()
+    })
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)

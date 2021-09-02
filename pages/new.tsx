@@ -3,10 +3,8 @@ import React from "react";
 import Editor from "react-mde";
 import remark from "remark";
 import html from "remark-html";
-// import "react-mde/lib/styles/css/react-mde-all.css";
 import Layout from "../components/layouts/homeLayout";
 import LoadingAnimation from "../components/loading";
-
 import { save, publishArticle } from "../lib/editor";
 
 type mode = "write" | "preview";

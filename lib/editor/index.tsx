@@ -58,7 +58,7 @@ export async function publishArticle(title: string, article: string) {
     }),
   });
   const { data, error } = await response.json();
-  if (data.articleId) {
+  if (data?.articleId) {
     window.location.href = "/articles/" + data.articleId;
   } else {
     console.log("Error: ", error);

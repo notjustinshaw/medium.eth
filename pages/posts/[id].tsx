@@ -1,5 +1,5 @@
 import Layout from "../../components/layouts/homeLayout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getAllPostIds, getPostData } from "../../lib/posts/posts";
 import Head from "next/head";
 import Date from "../../components/date/date";
 
@@ -39,7 +39,7 @@ export default function Post({ postData }) {
               </div>
             </div>
           </header>
-          <article className="mt-6 prose prose-xl text-gray-900 mx-auto font-body break-words">
+          <article className="mt-6 prose prose-xl mx-auto text-gray-800 break-words leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
           </article>
         </div>

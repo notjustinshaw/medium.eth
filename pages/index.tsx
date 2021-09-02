@@ -1,14 +1,15 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layouts/homeLayout";
-import { getSortedPostsData } from "../lib/posts";
+import Layout from "../components/layouts/homeLayout";
+import { getSortedPostsData } from "../lib/posts/posts";
 import Link from "next/link";
+import { v4 as uuid } from "uuid";
 import Date from "../components/date/date";
 
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Nonce</title>
       </Head>
       <div className="max-w-prose mx-auto">
         <section className="mx-4 mb-12">
@@ -18,7 +19,7 @@ export default function Home({ allPostsData }) {
           <div className="bg-white border border-gray-300 overflow-hidden rounded-md">
             <ul role="list" className="divide-y divide-gray-300">
               {allPostsData.map(({ id, date, title }) => (
-                <Link href={`/posts/${id}`}>
+                <Link href={`/posts/${id}`} key={uuid()}>
                   <li
                     key={id}
                     className="px-6 py-4 cursor-pointer hover:bg-gray-50"

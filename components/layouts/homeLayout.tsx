@@ -1,27 +1,27 @@
 import Head from "next/head";
 import Navbar from "../navbar";
 
-const name = "Justin Shaw";
-export const siteTitle = "Justin Shaw";
-
 export default function Layout({ children, home = false }) {
   return (
     <>
       <Head>
+        {/* Favicon and Fonts */}
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="An asynchronous stream of thoughts from Justin's brain to yours."
+        <link
+          href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;500;700&display=swap"
+          rel="stylesheet"
         />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;500;700&display=swap" rel="stylesheet"/>
+
+        {/* OG Tags */}
+        <meta name="og:title" content="Nonce" />
+        <meta property="og:description" content="A new medium for web3." />
+        <meta property="og:image" content="/assets/images/logo_512.png" />
+
+        {/* Twitter Tags */}
+        <meta name="twitter:title" content="Nonce" />
+        <meta name="twitter:description" content="A new medium for web3." />
+        <meta name="twitter:card" content="/assets/images/logo_512.png" />
+        <meta name="twitter:image" content="/assets/images/logo_128.png" />
       </Head>
       <Navbar />
       <main>{children}</main>
